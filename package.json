@@ -1,0 +1,25 @@
+{
+  "name": "assign3_hyunggil",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo\"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf build && cd ../part2-persons/ && npm run build && cp -r build ../persons-backend",
+    "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "log:prod": "fly logs"
+  },
+  "author": "Hyunggil Woo",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
