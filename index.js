@@ -1,7 +1,7 @@
 // console.log("Hello World")
 
 const express = require('express')
-const morgan = require('morgan')
+// const morgan = require('morgan')
 const cors = require('cors')
 
 const app = express()
@@ -11,9 +11,9 @@ const BILLION = 1000000000;
 app.use(express.json())
 
 // using morgan tiny configuration to log output: https://github.com/expressjs/morgan
-const tinyLogConfig = morgan(':method :url :status :res[content-length] - :response-time ms')
+// const tinyLogConfig = morgan(':method :url :status :res[content-length] - :response-time ms')
 
-app.use(tinyLogConfig)
+// app.use(tinyLogConfig)
 
 app.use(cors())
 
@@ -23,16 +23,19 @@ let persons =  [
     {
       name: "Wonto Wood",
       important: false,
+      age: 40,
       id: 4
     },
     {
       name: "Holly Ridge",
       important: false,
+      age: 33,
       id: 5
     },
     {
       name: "Hurricane Ridge",
       important: false,
+      age: 23,
       id: 6,
       weight: "160"
     },
@@ -40,6 +43,7 @@ let persons =  [
       name: "Issac",
       important: true,
       id: 7,
+      age: 3,
       weight: "10"
     }
   ]
@@ -104,7 +108,7 @@ let persons =  [
     app.post('/api/persons', (request, response) => {
         const body = request.body
         // post token here
-        morgan.token('type', )
+        // morgan.token('type', )
         const existingPerson = persons.find((person) => person.name === body.name);
 
         if (existingPerson) {
@@ -120,6 +124,10 @@ let persons =  [
             return response.status(400).json({
                 error: 'weight is missing'
             })
+        } else if (!body.age) {
+            return response.status(400).json({
+                error: 'age is missing'
+            })
         }// name already exists in customerbook
 
         const person = {
@@ -127,6 +135,7 @@ let persons =  [
             important: body.important || false,
             id: randomId(),
             weight: body.weight,
+            age: body.age,
         }
 
         persons = persons.concat(person)
@@ -153,9 +162,10 @@ let persons =  [
         try {
             const personsDataFromApi = persons;
             const currentTime = request.currentTime;
-            const infoData =  `<p> Customer book has info for ${personsDataFromApi.length} people </p>
-                        <p> ${currentTime} </p>` 
-            
+            const infoData =  {
+                        message: `Customer book has info for ${personsDataFromApi.length} people`,
+                        time: `${currentTime} </p>`  
+                        }
             response.json(infoData)
         } catch (error) {
             response.status(500).json({ error: 'Error Fetching data from /api/persons'});
