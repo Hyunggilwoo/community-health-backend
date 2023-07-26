@@ -1,5 +1,8 @@
-# MyAPI README
+# Community Health Full Stack README
 MyAPI is a simple REST API designed for managing customer data. This document serves as a guide to make HTTP requests to our API.
+
+## Project structure
+Front-end portion has been compressed into the build module. Thus, in order to run the application, simply run npm start. The front-end will be rendered and the back-end will be connected to the application.
 
 ## Base URL
 The base URL for all endpoints is:
