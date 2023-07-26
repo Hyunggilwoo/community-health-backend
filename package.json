@@ -2,12 +2,12 @@
   "name": "assign3_hyunggil",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo\"Error: no test specified\" && exit 1",
-    "build:ui": "rm -rf build && cd ../part2-persons/ && npm run build && cp -r build ../persons-backend",
+    "build:ui": "rm -rf build && cd ../community-health-frontend/ && npm run build && cp -r build && cp -r build",
     "deploy": "fly deploy",
     "deploy:full": "npm run build:ui && npm run deploy",
     "log:prod": "fly logs"

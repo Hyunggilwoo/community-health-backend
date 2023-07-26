@@ -67,6 +67,10 @@ let persons =  [
 
     app.use(requestLogger)
 
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+      });
+      
     app.get('/', (request, response) => {
         response.end('<h1>Hello World </h1>')
     })
